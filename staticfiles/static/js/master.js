@@ -2,7 +2,9 @@ $(".login").click(()=>{
     $("#account_modal").show()
 })
 
-
+function closeMessages() {
+    document.querySelector(".message").style.display= 'none'
+}
 
 // function siteHost()
 // {

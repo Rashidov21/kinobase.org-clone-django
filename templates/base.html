@@ -65,14 +65,36 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'movie:login' %}" class="modal login">Вход</a></li>
-                <li><a href="registration.html" class="register">Регистрация</a></li>
+                
+                {% if request.user.is_authenticated %}
+                    <li><a href="#" class="modal login">{{request.user.username}}</a></li>
+                    <li><a href="{% url 'movie:logout' %}" class="modal login">Выход</a></li>
+                    {% else %}
+                    <li><a href="{% url 'movie:login' %}" class="modal login">Вход</a></li>
+                    <li><a href="{% url 'movie:register' %}" class="register">Регистрация</a></li>
+                {% endif %}
+                    
+                
             </ul>
 
         </div>
 
     </div>
 </div>
+
+{% if messages %}   
+   
+    {% for message in messages %}
+    <div class="message">
+        <div class="close">
+            <a href="#" onclick="closeMessages()">x</a>
+        </div>
+        <div class="text">{{message}}</div>
+    </div>
+    {% endfor %}
+        
+{% endif %}
+    
 {% block content %}
 {% endblock %}
 

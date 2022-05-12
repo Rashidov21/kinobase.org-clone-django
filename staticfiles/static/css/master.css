@@ -1273,3 +1273,27 @@ fieldset[disabled] .form-control {
         width: 200px !important;
     }
 }
+
+
+.message{
+    width: 500px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    background-color: orange;
+    padding: 20px 30px;
+    text-align: center;
+}
+.message .text{
+    font-size: 1.5em;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.message .close a{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
