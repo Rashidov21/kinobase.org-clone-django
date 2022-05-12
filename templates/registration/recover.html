@@ -16,10 +16,11 @@
         
                 
 
-        <form action="/recover" class="form-horizontal" method="post" role="form">
+        <form action="" class="form-horizontal" method="post" role="form">
+            {% csrf_token %}
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="email" class="form-control" name="email" id="email" value="" placeholder="Электронная почта">
+                    {{form}}
                 </div>
             </div>
 

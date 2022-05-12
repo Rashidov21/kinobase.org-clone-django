@@ -31,9 +31,9 @@ def my_login(request):
     
     else:
         # Return an 'invalid login' error message.
-        return render(request, "login.html")
+        return render(request, "registration/login.html")
     
-    return render(request, "login.html")
+    return render(request, "registration/login.html")
 
 def logout_view(request):
     logout(request)
@@ -48,12 +48,10 @@ def registration_view(request):
         return HttpResponseRedirect("/login/")
     else:
         messages.add_message(request,messages.INFO,"Xatolik!")
-        return render(request, "registration.html", {"form":form})
+        return render(request, "registration/registration.html", {"form":form})
 
-    return render(request, "registration.html", {"form":form})
+    return render(request, "registration/registration.html", {"form":form})
 
-def recover_view(request):
-    return render(request, "recover.html")
 
 class HomeView(ListView):
     model = Movie
