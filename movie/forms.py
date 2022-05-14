@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
- 
+from .models import Comment
  
  
 class UserRegisterForm(UserCreationForm):
@@ -36,4 +36,18 @@ class UserRegisterForm(UserCreationForm):
                     "placeholder":"Confirm password"                  
                 }
             ),
+        }
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        # fields = ("name", "comment")
+        fields = "__all__"
+        exclude = ["movie"]
+        
+        widgets = {
+            "name":forms.TextInput(attrs={"class":"form-control"}),
+            "comment":forms.Textarea(attrs={"class":"form-control", "rows":3}),
         }

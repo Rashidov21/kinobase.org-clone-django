@@ -168,40 +168,49 @@
                     <div id="comments">
                         <div class="comments-title" id="comments-count">8 комментариев</div>
 
-
-                        <form action="/comments/add" id="comment_form" method="post">
-
+                      
+                        <form action="" id="comment_form" method="post">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="author_name" name="author_name"
-                                            maxlength="50" value="" placeholder="Гость">
+                                        {{form.name}}
                                     </div>
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <textarea class="form-control" id="comment" rows="3"></textarea>
+                                 {{form.comment}}
                             </div>
 
-                            <button class="btn btn-default btn-post" id="add_comment">Добавить</button>
+                            <button type="submit"
+                            class="btn btn-default btn-post" id="add_comment">
+                            Добавить
+                            </button>
                         </form>
 
 
                         <div id="comments-entries">
-                            <div class="media new_comment" data-comment-id="" style="display:none;">
-                                <div class="media-left">
-                                    <img class="media-object img-circle" src="" loading="lazy"
-                                        style="width: 50px; height: 50px;">
+                            
+                            {% for comment in object.movie_comments.all %}
+                                <div class="media new_comment" data-comment-id="" style="display:block;">
+                                    <div class="media-left">
+                                        <img class="media-object img-circle"
+                                        src="{% static 'storage/242x358/posters/2015/4/9yupW0KQrP.jpg'%}" loading="lazy"
+                                            style="width: 50px; height: 50px;">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="media-heading">
+                                        <b>{{comment.name}}</b> <span></span></div>
+                                        <p class="text">{{comment.comment}}</p>
+                                        <p class="small"><a href="javascript:void(0);" data-id="" class="text-muted remove"
+                                                title="Удалить">Удалить</a></p>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <div class="media-heading"><b></b> <span></span></div>
-                                    <p class="text"></p>
-                                    <p class="small"><a href="javascript:void(0);" data-id="" class="text-muted remove"
-                                            title="Удалить">Удалить</a></p>
-                                </div>
-                            </div>
+                                                            
+                            {% endfor %}
+                                
                         </div>
 
 

@@ -89,4 +89,23 @@ class Movie(models.Model):
         return f"{self.title}"
 
 
+class Comment(models.Model):
+    """Model definition for Comment."""
+    movie = models.ForeignKey(Movie, on_delete=models.PROTECT,
+    related_name="movie_comments", null=True)
+    name = models.CharField("Name", max_length=50, blank=True, default="Гость")
+    comment = models.TextField()
+    # TODO: Define fields here
+
+    class Meta:
+        """Meta definition for Comment."""
+
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'
+
+    def __str__(self):
+        """Unicode representation of Comment."""
+        return f"{self.name}"
+
+
 

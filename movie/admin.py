@@ -25,3 +25,5 @@ class MovieAdmin(admin.ModelAdmin):
     list_display = ["title", "category", "likes", "rating"]
     list_display_links = ["title"]
     prepopulated_fields = {"slug":("title",)}
+
+admin.site.register(Comment)
