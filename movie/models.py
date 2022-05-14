@@ -102,6 +102,7 @@ class Comment(models.Model):
 
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
+        ordering = ["-id"]
 
     def __str__(self):
         """Unicode representation of Comment."""

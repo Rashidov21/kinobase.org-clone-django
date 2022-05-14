@@ -166,7 +166,9 @@
 
 
                     <div id="comments">
-                        <div class="comments-title" id="comments-count">8 комментариев</div>
+                        <div class="comments-title" id="comments-count">
+                           {{object.movie_comments.all.count}} комментариев
+                         </div>
 
                       
                         <form action="" id="comment_form" method="post">
@@ -193,7 +195,7 @@
 
                         <div id="comments-entries">
                             
-                            {% for comment in object.movie_comments.all %}
+                            {% for comment in object.movie_comments.all|slice:'10' %}
                                 <div class="media new_comment" data-comment-id="" style="display:block;">
                                     <div class="media-left">
                                         <img class="media-object img-circle"
@@ -204,8 +206,7 @@
                                         <div class="media-heading">
                                         <b>{{comment.name}}</b> <span></span></div>
                                         <p class="text">{{comment.comment}}</p>
-                                        <p class="small"><a href="javascript:void(0);" data-id="" class="text-muted remove"
-                                                title="Удалить">Удалить</a></p>
+                                    
                                     </div>
                                 </div>
                                                             
