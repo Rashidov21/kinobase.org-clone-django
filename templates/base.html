@@ -25,7 +25,11 @@
 <script src="/static/static/js/jquery.js"></script>
 <script src="/static/static/js/bootstrap.js"></script>
 <script src="/static/static/js/master.js"></script>
-
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 
 <div id="ad110695"></div>
@@ -55,10 +59,14 @@
             </ul>
 
             <div class="navbar-left">
-                <form action="/search" method="get" class="navbar-form" id="autocomplete_search_form">
+                <form action="{% url 'movie:search' %}" method="get" class="navbar-form" id="autocomplete_search_form">
                     <div class="form-group">
-                        <input type="text" name="query" class="form-control" id="autocomplete_search" placeholder="Поиск" autocomplete="off">
-                        <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        <input type="text" name="query"
+                        class="form-control" id="autocomplete_search"
+                        placeholder="Поиск" autocomplete="off">
+                        <button type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
                     </div>
                 </form>
             </div>

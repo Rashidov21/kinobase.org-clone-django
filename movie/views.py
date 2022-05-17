@@ -82,3 +82,10 @@ class MovieDetailView(FormMixin,DetailView):
         f.movie = self.object
         f.save()
         return super().form_valid(form)
+
+
+def search(request):
+    q = request.GET.get("query")
+    data = Movie.objects.filter(title__icontains=q)
+    return render(request, 'search_list.html', {"object_list":data})
+

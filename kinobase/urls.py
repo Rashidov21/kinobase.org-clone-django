@@ -9,7 +9,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('movie.urls', namespace='movie')),
-
+    path('oauth/', include('social_django.urls', namespace='social')),
     # Login 
     # path("login/", LoginView.as_view(
     #     template_name=''

@@ -2,7 +2,13 @@
 {% load static %}
 
 {% block content %}
+<script>
+let p1 = document.querySelector("#id_password1")
+p1.classList.add("form-control")
 
+let p2 = document.querySelector("#id_password2")
+p2.classList.add("form-control")
+</script>
     
 <div id="main" class="container">
 
@@ -16,7 +22,7 @@
 
                 
 
-        <form action="" class="form-horizontal" method="post" role="form">
+        <form action="#" class="form-horizontal" method="post" role="form">
         {% csrf_token %}
             <div class="form-group">
                 <div class="col-sm-12">
