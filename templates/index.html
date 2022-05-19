@@ -3,11 +3,63 @@
 {% block content %}
 
 <div id="main" class="container">
+<div class="clearfix">
+    <div class="pull-left">
+        <a href="#" class="h3 catalog-title">Фильмы : {{filter_category}}</a>
+    </div>
 
+    <div class="dropdown-filters" style="padding-bottom:10px ;">
 
+        <div class="dropdown dropdown-filter">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <span class="dropdown-u">Жанр </span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">   
+                {% for gen in genres %}
+                    <li class="active" id="genreLinks" itemid="{{gen.id}}">
+                        <a href=""
+                        rel="nofollow">{{gen.name}}</a>
+                    </li>  
+                {% endfor %}                          
+            </ul>
+        </div>
 
-<a href="/films?sort=viewed_week" class="h3">Популярные фильмы</a>
-
+        <div class="dropdown dropdown-filter">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <span class="dropdown-u">Год</span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="active">
+                    <a href="{% url 'movie:sort' 'year=2022' %}" rel="nofollow">2022</a>
+                </li>
+                <li>
+                    <a href="{% url 'movie:sort' 'year=2018' %}" rel="nofollow">2018</a>
+                </li>
+                <li>
+                    <a href="{% url 'movie:sort' 'year=2015' %}" rel="nofollow">2015</a>
+                </li>
+                <li>
+                    <a href="{% url 'movie:sort' 'year=2014' %}" rel="nofollow">2014</a>
+                </li>
+           
+            </ul>
+        </div>
+        <div class="dropdown dropdown-filter">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <span class="dropdown-u">Качество</span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="active">
+                    <a href="{% url 'movie:sort' 'quality=HDR' %}" rel="nofollow">HDR</a>
+                </li>
+                <li>
+                    <a href="{% url 'movie:sort' 'quality=TS' %}" rel="nofollow">TS</a>
+                </li>
+        
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="row items">
 {% comment %} MOVIES  {% endcomment %}
 
@@ -30,6 +82,12 @@
 {% endfor %}
     {% comment %} ENDMOVIES {% endcomment %}
 </div>
-
+<script>
+    let links = document.querySelectorAll("#genreLinks")
+    for(let l of links){
+        let value = l.getAttribute("itemid")
+        l.children[0].href = `/films/genres=${value}`
+    }   
+</script>
 
 {% endblock %}

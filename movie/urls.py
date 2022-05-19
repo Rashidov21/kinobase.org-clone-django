@@ -10,6 +10,9 @@ urlpatterns = [
     path("movie/<slug:slug>/", views.MovieDetailView.as_view(), name='detail'),
     path("search/", views.search, name='search'),
 
+    # SORTING 
+    path("films/<str:sort_params>", views.movie_sorting, name="sort"),
+
 
     # login 
     path("login/", views.my_login, name='login'),

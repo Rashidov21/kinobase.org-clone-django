@@ -16,11 +16,11 @@ from .forms import UserRegisterForm, CommentForm
 def category_list(request,slug):
     category = Category.objects.get(slug=slug) #Фильмы
     movies = Movie.objects.filter(category=category)   
-    paginator = Paginator(movies, 2) # Show 2 movies per page.
+    paginator = Paginator(movies, 12) # Show 2 movies per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'list.html', {'page_obj': page_obj})
+    return render(request, 'list.html', {'page_obj': page_obj, "cat_name":category.name})
 
 def my_login(request):
     username = request.POST.get("username")
@@ -89,3 +89,26 @@ def search(request):
     data = Movie.objects.filter(title__icontains=q)
     return render(request, 'search_list.html', {"object_list":data})
 
+
+def movie_sorting(request, sort_params):
+    # sort_params.split("=")[0] sort type 
+    # sort_params.split("=")[1] sort value
+    sort_type = sort_params.split("=")[0]
+    sort_value = sort_params.split("=")[1]
+    # print(sort_type)
+    # print(sort_params)
+    if sort_type == "genres":
+        genre = Genre.objects.get(id=sort_value)
+        object_list = Movie.objects.filter(genres=sort_value)
+        return render(request, "index.html", {"object_list":object_list, "filter_category":genre.name})
+    elif sort_type == "year":
+        object_list = Movie.objects.filter(year=sort_value)
+        return render(request, "index.html", {"object_list":object_list, "filter_category":sort_value})
+    elif sort_type == "quality":
+        object_list = Movie.objects.filter(quality=sort_value)
+        return render(request, "index.html", {"object_list":object_list, "filter_category":sort_value})
+    else:
+        print("ERROR" * 10)
+        return HttpResponseRedirect("/")
+    
+    
