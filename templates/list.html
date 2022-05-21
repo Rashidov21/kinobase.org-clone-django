@@ -11,7 +11,7 @@
 
         <div class="clearfix">
             <div class="pull-left">
-                <a href="#" class="h3 catalog-title">{{cat_name}} : {{filter_category}}</a>
+                <a href="#" class="h3 catalog-title">{% if cat_name %}{{cat_name}}{% else %}Фильмы{% endif %} : {{filter_category}}</a>
             </div>
         
             <div class="dropdown-filters" style="padding-bottom:10px ;">

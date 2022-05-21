@@ -9,6 +9,8 @@ urlpatterns = [
     path("category/<slug>", views.category_list, name='category_list'),
     path("movie/<slug:slug>/", views.MovieDetailView.as_view(), name='detail'),
     path("search/", views.search, name='search'),
+    path("liked/", views.likedMovies, name='likedMovies'),
+    path("like/", views.likeMovie, name='likeMovie'),
 
     # SORTING 
     path("films/<str:sort_params>", views.movie_sorting, name="sort"),

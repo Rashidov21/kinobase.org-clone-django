@@ -69,7 +69,7 @@
             <a href="{% url 'movie:detail' movie.slug %}">
             <img src="{{movie.poster.url}}" class="img-responsive" loading="lazy" alt="{{movie.title}}" title="{{movie.title}}">
             </a>
-            <button class="favorite" data-movie-id="194038" title="Добавить в избранное"></button>
+                <button class="favorite" onclick="addLikedMovie({{ movie.id }})" data-movie-id="194038" title="Добавить в избранное"></button>
             <div class="info">
                 <div class="title">
                     <a href="{% url 'movie:detail' movie.slug %}" class="link" 

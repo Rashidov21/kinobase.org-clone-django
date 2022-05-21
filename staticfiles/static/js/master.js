@@ -6,6 +6,8 @@ function closeMessages() {
     document.querySelector(".message").style.display= 'none'
 }
 
+
+
 // function siteHost()
 // {
 //     var proto = window.location.protocol;

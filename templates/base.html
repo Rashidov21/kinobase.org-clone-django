@@ -75,7 +75,7 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 {% if request.user.is_authenticated %}
-                    <li><a href="#" class="modal login">{{request.user.username}}</a></li>
+                    <li><a href="{% url 'movie:likedMovies' %}" class="modal login">{{request.user.username}}</a></li>
                     <li><a href="{% url 'movie:logout' %}" class="modal login">Выход</a></li>
                     {% else %}
                     <li><a href="{% url 'movie:login' %}" class="modal login">Вход</a></li>
@@ -113,7 +113,28 @@
 </div>
 
 
+<script>
+      function addLikedMovie(movie_id) {
+            let data = JSON.stringify(movie_id)
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let status = JSON.parse(this.responseText)
+                    if(status['status'] == 200){
+                        alert("OK useer bor")
+                    }else{
+                        window.location.href = "/login/"
+                    }
+                } else {
+                    console.log("error")
+                }
+            };
+            let url = "/like/"
+            xhttp.open("GET", url + `?data=${data}`, true);
+            xhttp.send();
 
+        }
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){

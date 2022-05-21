@@ -1,12 +1,144 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
-<ul>
-    
-    {% for movie in object_list %}
-        <li>{{movie.title}}</li>
-    {% endfor %}
+
+
+
+<div id="main" class="container">
+
+
+    <div id="movies">
+
+        <div class="clearfix">
+            <div class="pull-left">
+                <a href="#" class="h3 catalog-title">{% if cat_name %}{{cat_name}}{% else %}Фильмы{% endif %} : {{filter_category}}</a>
+            </div>
         
-    
-</ul>
-{% endblock %}
+            <div class="dropdown-filters" style="padding-bottom:10px ;">
+        
+                <div class="dropdown dropdown-filter">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <span class="dropdown-u">Жанр </span> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">   
+                        {% for gen in genres %}
+                            <li class="active" id="genreLinks" itemid="{{gen.id}}">
+                                <a href=""
+                                rel="nofollow">{{gen.name}}</a>
+                            </li>  
+                        {% endfor %}                          
+                    </ul>
+                </div>
+        
+                <div class="dropdown dropdown-filter">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <span class="dropdown-u">Год</span> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="active">
+                            <a href="{% url 'movie:sort' 'year=2022' %}" rel="nofollow">2022</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'movie:sort' 'year=2018' %}" rel="nofollow">2018</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'movie:sort' 'year=2015' %}" rel="nofollow">2015</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'movie:sort' 'year=2014' %}" rel="nofollow">2014</a>
+                        </li>
+                   
+                    </ul>
+                </div>
+                <div class="dropdown dropdown-filter">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <span class="dropdown-u">Качество</span> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="active">
+                            <a href="{% url 'movie:sort' 'quality=HDR' %}" rel="nofollow">HDR</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'movie:sort' 'quality=TS' %}" rel="nofollow">TS</a>
+                        </li>
+                
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row items">
+            {% if object_list %}
+            {% for movie in object_list %}              
+              
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 item">
+                <a href="{% url 'movie:detail' movie.slug %}">
+                    <img src="{{movie.poster.url}}"
+                        class="img-responsive" loading="lazy" alt="{{movie.title}}"
+                        title="{{movie.title}}">
+                </a>
+
+                <button class="favorite" data-movie-id="179849" title="Добавить в избранное"></button>
+
+                <span class="label label-danger">2 сезон 10 серия</span>
+
+                <div class="info">
+                    <div class="title">
+                        <a href="{% url 'movie:detail' movie.slug %}" class="link" alt="{{movie.title}}"
+                            title="{{movie.title}}">{{movie.title}}</a>
+                    </div>
+                    <div class="desc">2021, HDRip</div>
+                </div>
+            </div>
+            
+        {% endfor %}
+        {% else %}
+        <center>
+            <a href="#" class="h3 catalog-title">
+                фильм не найден
+            </a>
+            <br>
+            <a href="/" class="h3 catalog-title btn btn-default btn-post">
+                Назад
+            </a>
+        </center>
+        {% endif %}
+        </div>
+
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            </li>
+           
+        {% endif %}
+        
+        {% for page in page_obj.paginator.page_range %}
+        {% if page == page_obj.number %}
+            <li class="active">
+                <a href="?page={{page}}">{{page}}</a>
+            </li>
+        {% else %}
+            <li class="">
+                <a href="?page={{page}}">{{page}}</a>
+            </li>
+        {% endif %}
+        {% endfor %}
+            
+        {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            </li>
+        {% endif %}
+           
+        </ul>
+    </div>
+    <script>
+        let links = document.querySelectorAll("#genreLinks")
+        for(let l of links){
+            let value = l.getAttribute("itemid")
+            l.children[0].href = `/films/genres=${value}`
+        }   
+    </script>
+    {% endblock content %}

@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect ,HttpResponse
+from django.http import HttpResponseRedirect ,HttpResponse, JsonResponse
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
+from transliterate import translit
 
 
 # Create your views here.
@@ -86,9 +88,13 @@ class MovieDetailView(FormMixin,DetailView):
 
 def search(request):
     q = request.GET.get("query")
-    data = Movie.objects.filter(title__icontains=q)
-    return render(request, 'search_list.html', {"object_list":data})
+    ru_text = translit(q, "ru").title()
+    print(ru_text)
+    data = Movie.objects.filter(
+        Q(title__icontains=ru_text) | Q(actors__name__icontains=ru_text) | Q(genres__name__icontains=ru_text)
+    )
 
+    return render(request, 'search_list.html', {"object_list":set(data)})
 
 def movie_sorting(request, sort_params):
     # sort_params.split("=")[0] sort type 
@@ -111,4 +117,25 @@ def movie_sorting(request, sort_params):
         print("ERROR" * 10)
         return HttpResponseRedirect("/")
     
-    
+def check_like_list(request):
+    print(dir(request.session))
+    request.session.modified = True   
+    try:
+        liked_posts = request.session["like_list"]        
+    except:
+        request.session["like_list"] = []
+        
+    print(request.session.get("like_posts"))
+    return True
+
+
+def likeMovie(request):
+    check_like_list(request)    
+    if request.user.is_authenticated:
+        print(request.GET.get("data"))
+    else:
+        return JsonResponse({"status":400})
+    return JsonResponse({"status":200})
+
+def likedMovies(request):
+    return render(request, "liked-movies.html")

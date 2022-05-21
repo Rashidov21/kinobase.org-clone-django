@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div id="main" class="container">
+
+
+    <div id="movies">
+
+        <div class="clearfix">
+            <div class="pull-left">
+                <a href="#" class="h3 catalog-title">{% if cat_name %}{{cat_name}}{% else %}Любимые Фильмы{% endif %} : {{filter_category}}</a>
+            </div>
+
+        </div>
+
+
+        <div class="row items">
+            {% if object_list %}
+            {% for movie in object_list %}              
+              
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 item">
+                <a href="{% url 'movie:detail' movie.slug %}">
+                    <img src="{{movie.poster.url}}"
+                        class="img-responsive" loading="lazy" alt="{{movie.title}}"
+                        title="{{movie.title}}">
+                </a>
+
+                <button class="favorite" data-movie-id="179849" title="Добавить в избранное"></button>
+
+                <span class="label label-danger">2 сезон 10 серия</span>
+
+                <div class="info">
+                    <div class="title">
+                        <a href="{% url 'movie:detail' movie.slug %}" class="link" alt="{{movie.title}}"
+                            title="{{movie.title}}">{{movie.title}}</a>
+                    </div>
+                    <div class="desc">2021, HDRip</div>
+                </div>
+            </div>
+            
+        {% endfor %}
+        {% else %}
+        <center>
+            <a href="#" class="h3 catalog-title">
+                фильм не найден
+            </a>
+            <br>
+            <a href="/" class="h3 catalog-title btn btn-default btn-post">
+                Назад
+            </a>
+        </center>
+        {% endif %}
+        </div>
+
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            </li>
+           
+        {% endif %}
+        
+        {% for page in page_obj.paginator.page_range %}
+        {% if page == page_obj.number %}
+            <li class="active">
+                <a href="?page={{page}}">{{page}}</a>
+            </li>
+        {% else %}
+            <li class="">
+                <a href="?page={{page}}">{{page}}</a>
+            </li>
+        {% endif %}
+        {% endfor %}
+            
+        {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            </li>
+        {% endif %}
+           
+        </ul>
+    </div>
+
+    {% endblock content %}
