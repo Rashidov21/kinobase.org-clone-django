@@ -75,7 +75,7 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'movie:likedMovies' %}" class="modal login">{{request.user.username}}</a></li>
+                    <li><a href="{% url 'movie:likedMovies' %}" class="modal login">{{request.user.first_name}}</a></li>
                     <li><a href="{% url 'movie:logout' %}" class="modal login">Выход</a></li>
                     {% else %}
                     <li><a href="{% url 'movie:login' %}" class="modal login">Вход</a></li>

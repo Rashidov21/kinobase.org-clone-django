@@ -30,6 +30,7 @@ def my_login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
+
         # Redirect to a success page.
         return HttpResponseRedirect("/")
     
@@ -46,6 +47,7 @@ def logout_view(request):
 
 def registration_view(request):
     form = UserRegisterForm(request.POST)
+    # print(dir(form))
     if form.is_valid():
         form.save()
         messages.add_message(request,messages.INFO,"Siz royhatdan ottiz , endi kiring!")

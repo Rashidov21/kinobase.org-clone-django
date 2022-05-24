@@ -27,3 +27,4 @@ class MovieAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug":("title",)}
 
 admin.site.register(Comment)
+admin.site.register(LikedMovieList)

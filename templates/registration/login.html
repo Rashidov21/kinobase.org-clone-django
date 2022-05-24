@@ -49,8 +49,11 @@
     <div class="col-sm-4">
 
         <div class="registration-social-login">
-            <a class="btn-own btn-vk" href="javascript:void(0);" onclick="ulogin.vkontakte('https://kinobase.org/ulogin');"><span class="icon-vkontakte"></span>  Войти через Вконтакте</a>
-            <a class="btn-own btn-ok" href="javascript:void(0);" onclick="ulogin.odnoklassniki('https://kinobase.org/ulogin');"><span class="icon-odnoklassniki"></span>  Войти через Одноклассники</a>
+            <a class="btn-own btn-vk"
+            href="{% url 'social:begin' 'facebook' %}">
+            <span class="icon-facebook"></span>  Войти через Facebook</a>
+            <a class="btn-own btn-ok" href="{% url 'social:begin' 'google-oauth2' %}" >
+                <span class="icon-facebook"></span>  Войти через Google</a>
         </div>
 
     </div>

@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('movie.urls', namespace='movie')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path('', include('django.contrib.auth.urls')),
     # Login 
     # path("login/", LoginView.as_view(
     #     template_name=''

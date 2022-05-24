@@ -109,11 +109,26 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.google.GoogleOAuth2',
-
+    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 # SOCIAL_AUTH_LOGIN_URL = '/login-url/'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '579048985435-m9f8jt474l2dnshoovckevu1odjqjh3o.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '429781718509490'
+SOCIAL_AUTH_FACEBOOK_SECRET = '71dfe6a0b05bd2f58aa11eb69e7ac243'
+
+SOCIAL_AUTH_GITHUB_KEY = '3ce7db5c3bf46e6e7091'
+SOCIAL_AUTH_GITHUB_SECRET = '2fafb38098aef2890352b05f184cd4fbfdd65be2'
+
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email, age_range'
+}
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.10'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
