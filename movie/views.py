@@ -117,20 +117,10 @@ def movie_sorting(request, sort_params):
         print("ERROR" * 10)
         return HttpResponseRedirect("/")
     
-def check_like_list(request):
-    print(dir(request.session))
-    request.session.modified = True   
-    try:
-        liked_posts = request.session["like_list"]        
-    except:
-        request.session["like_list"] = []
-        
-    print(request.session.get("like_posts"))
-    return True
 
 
 def likeMovie(request):
-    check_like_list(request)    
+   
     if request.user.is_authenticated:
         print(request.GET.get("data"))
     else:
