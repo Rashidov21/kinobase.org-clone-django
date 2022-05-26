@@ -1,0 +1,3 @@
+Django==3.2.6
+locustio==0.999
+transliterate==1.10.2

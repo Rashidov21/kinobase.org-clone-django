@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<main>
+    <div class="e404">
+        <h3>404</h3>
+        <p>Ошибка 404. <br> «Страница не найдена»</p>
+        <br><br>
+        <a href="/" class="btn btn-primary">
+            Домой
+        </a>
+    </div>
+</main>
+<style>
+    .e404 {
+        width: 100%;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .e404 h3 {
+        font-size: 5em;
+        line-height: 50px;
+    }
+    
+    .e404 p {
+        font-size: 2em;
+        line-height: 50px;
+    }
+</style>
+{% endblock content %}

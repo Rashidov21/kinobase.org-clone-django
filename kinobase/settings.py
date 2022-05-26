@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
-from .config import my_email, my_password
+from .config import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-357(fzot%%*#-$*ph8dl(5%untg2=0)*dn+9qa!!=+(ngadpdx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movie',
     'social_django',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -49,8 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
-
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 ROOT_URLCONF = 'kinobase.urls'
 
 TEMPLATES = [
@@ -66,7 +72,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'movie.context_pro.view_all',
 
-                 # Add the following two
+                # Add the following two
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
@@ -115,18 +121,16 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 # SOCIAL_AUTH_LOGIN_URL = '/login-url/'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '579048985435-m9f8jt474l2dnshoovckevu1odjqjh3o.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google_api_key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_api_secret
 
-SOCIAL_AUTH_FACEBOOK_KEY = '429781718509490'
-SOCIAL_AUTH_FACEBOOK_SECRET = '71dfe6a0b05bd2f58aa11eb69e7ac243'
+SOCIAL_AUTH_FACEBOOK_KEY = fbapikey
+SOCIAL_AUTH_FACEBOOK_SECRET = fbapisecret
 
-SOCIAL_AUTH_GITHUB_KEY = '3ce7db5c3bf46e6e7091'
-SOCIAL_AUTH_GITHUB_SECRET = '2fafb38098aef2890352b05f184cd4fbfdd65be2'
 
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-  'locale': 'ru_RU',
-  'fields': 'id, name, email, age_range'
+    'locale': 'ru_RU',
+    'fields': 'id, name, email, age_range'
 }
 SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.10'
 
@@ -147,14 +151,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-import os
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'staticfiles')) ,
+    os.path.join(BASE_DIR, 'staticfiles')),
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
