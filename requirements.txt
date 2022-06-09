@@ -1,3 +1,47 @@
 Django==3.2.6
 locustio==0.999
 transliterate==1.10.2
+
+Python yordamida PDF fayllarini birlashtirish
+
+Ushbu qo'llanmada biz Python yordamida PDF-fayllarni qanday birlashtirishni o'rganamiz.
+
+Kirish
+PDF-fayllarni birlashtirish ko'pincha hujjatlarning bir nechta sahifalarini skanerlash yoki bir nechta sahifalarni shaxsiy hujjatlar sifatida kompyuteringizda saqlashdan keyin talab qilinadigan operatsiya hisoblanadi.
+
+Ushbu vazifani tezda bajarishga yordam beradigan Adobe kabi bir nechta dasturiy ta'minot va onlayn vositalar mavjud. Biroq, ularning aksariyati pullik yoki yetarlicha xavfsizlik xususiyatlariga ega bo'lmasligi mumkin.
+Ushbu qo'llanmada biz Python yordamida kompyuteringizda bir necha qator kodlar yordamida PDF-fayllarni qanday birlashtirishni o'rganamiz.
+
+Ushbu qo'llanmani davom ettirish uchun bizga PyPDF2 Python kutubxonasi kerak bo'ladi: 
+
+Agar sizda u o'rnatilmagan bo'lsa, iltimos, "Buyruqlar satri" ni (Windows-da) oching va kutubxonani quyidagi kod yordamida o'rnating:
+pip install PyPDF2
+
+Endi esa bizga ish uchun bir nechta PDF fayllar kerak bo'ladi.
+
+Siz istalgan PDF faylni sinov uchun olishingiz mumkin , lekin iloji boricha kichikroq hajmda bo'lsin.
+Ushbu PDF-fayllar pdf_files papkasida joylashgan bo'lib, u bizning kodimiz bilan (main.py) bilan bitta katalogda joylashgan.
+
+Python yordamida ikkita PDF faylni birlashtirishni boshlaymiz.
+
+Python-da PDF-ni birlashtirishni amalga oshirish uchun PyPDF2 kutubxonasidan PdfFileMerger() class'ini import qilishimiz va ushbu class namunasini yaratishimiz kerak bo'ladi.
+
+Ushbu misolda biz ikkita faylni birlashtiramiz: sample_page1.pdf va sample_page2.pdf.
+
+Bunday holda, ikkita fayl yo'li ro'yxatga joylashtirilishi mumkin, biz ularni for'(tsikl)ga tashlaymiz  va bir-biriga qo'shamiz:
+
+
+Kodni ishga tushirib main.py fayli bilan bir xil katalogda yaratilgan merged_2_pages.pdf ni ko'rishingiz kerak:
+
+
+Python yordamida ko'plab PDF fayllarni birlashtirish.
+
+Ushbu bo'limda biz Python yordamida ko'plab PDF-fayllarni qanday birlashtirishni o'rganamiz.
+
+Ko'p PDF-fayllarni birlashtirish usullaridan biri bu har bir PDF-faylning fayl nomlarini ro'yxatga qo'lda qo'shish va keyin oldingi bo'limdagi kabi amalni bajarishdir.
+
+Ammo papkada 100 ta PDF fayli bo'lsa nima bo'ladi? OS kutubxonasidan foydalanib, biz ma'lum bir katalogdagi barcha fayl nomlarini ro'yxat sifatida olishimiz va yuqoridagi kodni takrorlashimiz mumkin:
+
+Maqolada biz Python yordamida bir nechta PDF-fayllarni qanday birlashtirishni o'rganib chiqdik.
+
+Agar sizda biron bir savol bo'lsa yoki o'zgartirishlar bo'yicha takliflaringiz bo'lsa, past fikringizni qoldiring va Python dasturlash bo'yicha ko'proq tutoriallarni kutib qoling!
