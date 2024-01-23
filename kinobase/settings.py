@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-357(fzot%%*#-$*ph8dl(5%untg2=0)*dn+9qa!!=+(ngadpdx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ["*"]
@@ -121,11 +121,11 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 # SOCIAL_AUTH_LOGIN_URL = '/login-url/'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google_api_key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_api_secret
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google_api_key
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_api_secret
 
-SOCIAL_AUTH_FACEBOOK_KEY = fbapikey
-SOCIAL_AUTH_FACEBOOK_SECRET = fbapisecret
+# SOCIAL_AUTH_FACEBOOK_KEY = fbapikey
+# SOCIAL_AUTH_FACEBOOK_SECRET = fbapisecret
 
 
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
@@ -159,12 +159,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'staticfiles')),
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = my_email
-EMAIL_HOST_PASSWORD = my_password
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = my_email
+# EMAIL_HOST_PASSWORD = my_password
+# EMAIL_USE_TLS = True
 
 
 # Default primary key field type
