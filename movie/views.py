@@ -122,7 +122,6 @@ def movie_sorting(request, sort_params):
 
 
 def likeMovie(request):
-   
     if request.user.is_authenticated:
         print(request.GET.get("data"))
     else:

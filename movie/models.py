@@ -119,3 +119,6 @@ class LikedMovieList(models.Model):
     def __str__(self):
         """Unicode representation of Comment."""
         return f"{self.user.username}"
+
+
+    
